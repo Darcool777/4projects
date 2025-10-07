@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: yellow;
+}
+
+header {
+    background-color: brown;
+    color: blue;
+    padding: 10px;
+}
+
+section {
+    padding: 10px;
+    text-align: justify;
+}
+
+footer {
+    background-color: brown;
+    color: blue;
+    text-align: center;
+    padding: 10px;
+}

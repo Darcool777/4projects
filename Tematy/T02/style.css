@@ -1,0 +1,95 @@
+/* Ogólny styl strony */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Nagłówek strony */
+.page-header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.page-header .author {
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+
+/* Nagłówki */
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 20px;
+}
+
+/* Lista w paragrafach */
+li {
+    margin-left: 25px;
+}
+
+/* Kontener dla schematów blokowych */
+.scheme-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+/* Obrazki */
+.scheme-container img {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Tekst obok obrazka */
+.scheme-text {
+    flex: 1;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+/* Ustawienie pionowe dla przykładów schematów */
+.scheme-container.vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+/* Obrazki w pionowych kontenerach */
+.scheme-container.vertical img {
+    max-width: 400px;   /* dopasowana szerokość */
+    width: 100%;
+    height: auto;
+}
