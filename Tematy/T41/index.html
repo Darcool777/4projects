@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>działanie na tablicach</title>
+    <meta charset="UTF-8">
+    <title>T41</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<br><br>
+
+<script>
+    let input = prompt("Podaj ciąg liczb (oddzielone przecinkami):");
+
+    if (!input) {
+        document.write("Podaj poprawne liczby");
+    } else {
+        let numbers = input.split(",").map(x => Number(x.trim()));
+
+        if (numbers.length === 0 || numbers.some(isNaN)) {
+            document.write("Podaj poprawne liczby");
+
+        } else {
+            let sorted = numbers.slice().sort((a, b) => a - b);
+            let even = numbers.filter(n => n % 2 === 0);
+            let sum = numbers.reduce((acc, n) => acc + n, 0);
+
+            document.write("Tablica liczb: " + numbers.join(", ") + "<br>");
+            document.write("Posortowana tablica: " + sorted.join(", ") + "<br>");
+            document.write("Liczby parzyste: " + even.join(", ") + "<br>");
+            document.write("Suma wszystkich elementów: " + sum);
+        }
+    }
+</script>
+
+</body>
+</html>
