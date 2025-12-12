@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>zadanie z datą urodzin_d</title>
+    <meta charset="UTF-8">
+    <title>T42</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<br><br>
+
+<script>
+    let input = prompt("Podaj date urodzenia (RRRR-MM-DD):");
+
+    if (!input) {
+        document.write("Podaj date");
+    } else {
+        let birth = new Date(input);
+
+
+        if (isNaN(birth.getTime())) {
+            document.write("Niepoprawna data");
+        } else {
+            let today = new Date();
+
+
+            if (birth > today) {
+                document.write("Data urodzenia nie może być z przyszłości!");
+            } else {
+
+                const dniTyg = ["niedzielę", "poniedziałek", "wtorek", "środę", "czwartek", "piątek", "sobotę"];
+
+                let age = today.getFullYear() - birth.getFullYear();
+                let hasBirthdayPassed =
+                    (today.getMonth() > birth.getMonth()) ||
+                    (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+
+                if (!hasBirthdayPassed) age--;
+
+
+                let nextBirthday = new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
+                if (nextBirthday < today) {
+                    nextBirthday.setFullYear(today.getFullYear() + 1);
+                }
+
+                let msDiff = nextBirthday - today;
+                let daysToBirthday = Math.ceil(msDiff / (1000 * 60 * 60 * 24));
+
+
+                document.write("Twoja data urodzenia: " + input + "<br>");
+                document.write("Urodziłeś się w " + dniTyg[birth.getDay()] + "<br>");
+                document.write("Masz " + age + " lat<br>");
+                document.write("Do Twoich najbliższych urodzin zostało: " + daysToBirthday + " dni");
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>

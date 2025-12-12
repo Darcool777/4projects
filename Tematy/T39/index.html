@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <title>T39</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+    <h1>Temat 39</h1>
+    <h2>Autor: Karol Błaszczyk</h2>
+    <hr />
+    <h2>czołg</h2>
+</header>
+<script>
+    class Czolg {
+        constructor(nazwa, kolor, amunicja) {
+            this.nazwa = nazwa;
+            this.kolor = kolor;
+            this.iloscAmunicji = amunicja;
+        }
+
+        info() {
+            console.log(`Czołg: ${this.nazwa}, kolor: ${this.kolor}, amunicja: ${this.iloscAmunicji}`);
+        }
+
+        pomaluj(nowyKolor) {
+            this.kolor = nowyKolor;
+            console.log(`Kolor czołgu został zmieniony na ${this.kolor}`);
+        }
+
+        zaladuj(ile = 1) {
+            this.iloscAmunicji += ile;
+            console.log(`Załadowano ${ile} amunicji. Łączna ilość: ${this.iloscAmunicji}`);
+        }
+
+        strzelaj() {
+            if (this.iloscAmunicji > 0) {
+                this.iloscAmunicji--;
+                console.log(`Strzał! Pozostała amunicja: ${this.iloscAmunicji}`);
+            } else {
+                console.log("Brak amunicji! Nie można strzelać.");
+            }
+        }
+    }
+
+    const mojCzolg = new Czolg("T72", "zielony", 39);
+
+    mojCzolg.info();
+    mojCzolg.pomaluj("czerwony");
+    mojCzolg.zaladuj(10);
+    mojCzolg.strzelaj();
+    mojCzolg.strzelaj();
+    for (let i = 0; i < 50; i++) {
+        mojCzolg.strzelaj();
+    }
+</script>
+</body>
+</html>

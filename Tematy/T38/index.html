@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>T38</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Temat 38</h1>
+    <h2>Autor: Karol Błaszczyk</h2>
+    <hr>
+    <h2>obiekt opisujący pojazd</h2>
+</header>
+<script>
+    var pojazd = {
+        marka: "Mitsubishi",
+        model: "Colt",
+        rok_produkcji: "2008",
+        przebieg: 106000,
+        pojemnosc: 1.3,
+        wyswietlDane: function () {
+            document.write(this.marka + ' ' + this.model + ', rok produkcji: ' + this.rok_produkcji + ', pojemność: ' + this.pojemnosc + '<br>');
+        }
+    };
+
+    pojazd.wyswietlDane();
+
+    pojazd.numer_rej = "DGL TWINK";
+    pojazd.wyswietlDetal = function () {
+        document.write('Marka: ' + this.marka + ', numer rejestracyjny: ' + this.numer_rej);
+    };
+
+    pojazd.wyswietlDetal();
+</script>
+
+</body>
+</html>
