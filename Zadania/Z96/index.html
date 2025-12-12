@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Z96</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Zadanie 96</h2>
+
+<p>Podaj liczbę wierszy i kolumn:</p>
+<input id="rows" placeholder="n">
+<input id="cols" placeholder="m">
+<br><br>
+
+<textarea id="data" placeholder="Podaj liczby po przecinku" style="width:300px;height:100px"></textarea>
+<br><br>
+
+<button id="btn">Sprawdź</button>
+
+<div id="result"></div>
+
+<script>
+  document.getElementById("btn").onclick = function () {
+
+    let n = parseInt(document.getElementById("rows").value);
+    let m = parseInt(document.getElementById("cols").value);
+
+    if (isNaN(n) || isNaN(m)) {
+      document.getElementById("result").innerHTML = "n i m muszą być liczbami całkowitymi";
+      return;
+    }
+
+
+    let tekst = document.getElementById("data").value;
+    let liczby = tekst.split(",").map(x => x.trim());
+
+
+    for (let i = 0; i < liczby.length; i++) {
+      if (liczby[i] === "" || isNaN(liczby[i]) || !Number.isInteger(Number(liczby[i]))) {
+        document.getElementById("result").innerHTML = "Wszystkie elementy muszą być liczbami całkowitymi";
+        return;
+      }
+    }
+
+    liczby = liczby.map(Number);
+
+    if (liczby.length !== n * m) {
+      document.getElementById("result").innerHTML = "Podano złą liczbę elementów.";
+      return;
+    }
+
+    let tablica = [];
+    let index = 0;
+
+    for (let i = 0; i < n; i++) {
+      let wiersz = [];
+      for (let j = 0; j < m; j++) {
+        wiersz.push(liczby[index]);
+        index++;
+      }
+      tablica.push(wiersz);
+    }
+
+    let maks = liczby[0];
+    for (let x of liczby) {
+      if (x > maks) maks = x;
+    }
+
+    let pozycje = [];
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        if (tablica[i][j] === maks) {
+          pozycje.push("(" + i + ", " + j + ")");
+        }
+      }
+    }
+
+    let out = "<h3>Wynik:</h3>";
+    out += "<b>Tablica:</b><br>";
+
+    for (let i = 0; i < n; i++) {
+      out += tablica[i].join(" | ") + "<br>";
+    }
+
+    out += "<br><b>Max:</b> " + maks;
+    out += "<br><b>Położenie:</b> " + pozycje.join(", ");
+
+    document.getElementById("result").innerHTML = out;
+  }
+</script>
+
+</body>
+</html>
