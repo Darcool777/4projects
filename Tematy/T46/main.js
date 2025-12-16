@@ -1,13 +1,13 @@
 const div = document.querySelector("#data");
-let pokazanaData = true;
+let dataBylaPokazana = false;
 
 function pokazDate() {
-    if (pokazanaData) {
+    if (!dataBylaPokazana) {
         const dzisiaj = new Date();
         div.innerHTML = dzisiaj.toLocaleString();
-        pokazanaData = false;
+        dataBylaPokazana = true;
     } else {
-        div.innerHTML = "Data już była ;3";
+        div.innerHTML = "Data już była ;)";
     }
 }
 
@@ -15,5 +15,5 @@ function wyczyscPole() {
     div.innerHTML = '';
 }
 
-div.addEventListener("mouseover", pokazDate);
+div.addEventListener("mouseenter", pokazDate);
 div.addEventListener("mouseleave", wyczyscPole);
