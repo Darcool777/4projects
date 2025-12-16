@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>T42c</title>
+</head>
+<body>
+
+<script>
+
+  let data = prompt("Podaj datę urodzenia (RRRR-MM-DD):");
+  let ur = new Date(data);
+
+  if (isNaN(ur.getTime())) {
+    document.write("Niepoprawna data");
+  } else {
+
+    let now = new Date();
+    let wiek = now.getFullYear() - ur.getFullYear();
+
+    if (
+            now.getMonth() < ur.getMonth() ||
+            (now.getMonth() === ur.getMonth() && now.getDate() < ur.getDate())
+    ) {
+      wiek--;
+    }
+    document.write("Masz " + wiek + " lat.");
+  }
+
+</script>
+
+</body>
+</html>

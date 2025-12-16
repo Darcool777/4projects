@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Z91</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Zadanie 91</h2>
+
+<p>Podaj liczbę elementów (n &lt; 100):</p>
+<input id="n" placeholder="n">
+<br><br>
+
+<p>Wartości tablicy (liczby całkowite oddzielone przecinkami):</p>
+<textarea id="data" placeholder="np. 1, 2, 3, 4"></textarea>
+<br><br>
+
+<button id="btn">Wyświetl tablicę</button>
+
+<div id="result"></div>
+
+<script>
+  document.getElementById("btn").onclick = function () {
+
+    let n = parseInt(document.getElementById("n").value);
+
+    if (isNaN(n) || !Number.isInteger(n) || n <= 0 || n >= 100) {
+      document.getElementById("result").innerHTML =
+              "n musi być liczbą całkowitą mniejszą od 100";
+      return;
+    }
+
+    let tekst = document.getElementById("data").value;
+    let liczby = tekst.split(",").map(x => x.trim());
+
+    if (liczby.length !== n) {
+      document.getElementById("result").innerHTML =
+              "Liczba podanych wartości nie zgadza się z n";
+      return;
+    }
+
+    for (let i = 0; i < liczby.length; i++) {
+      if (liczby[i] === "" || isNaN(liczby[i]) ||
+              !Number.isInteger(Number(liczby[i]))) {
+        document.getElementById("result").innerHTML =
+                "Wszystkie wartości muszą być liczbami całkowitymi";
+        return;
+      }
+    }
+
+    let tablica = liczby.map(Number);
+
+    let out = "<h3>Wynik:</h3>";
+    out += "<b>Tablica:</b><br>";
+    out += tablica.join(" | ");
+
+    document.getElementById("result").innerHTML = out;
+  };
+</script>
+
+</body>
+</html>

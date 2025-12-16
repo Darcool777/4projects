@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Z94</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<h2>Zadanie 94</h2>
+
+<p>Wartości tablicy (liczby całkowite oddzielone przecinkami):</p>
+<textarea id="data" placeholder="np. 1, 2, 3, 4"></textarea>
+<br><br>
+
+<button id="btn">Sprawdź</button>
+
+<div id="result"></div>
+
+<script>
+  document.getElementById("btn").onclick = function () {
+
+    let tekst = document.getElementById("data").value;
+
+    let liczby = tekst.split(",").map(x => x.trim());
+
+    if (liczby.length === 0 || liczby[0] === "") {
+      document.getElementById("result").innerHTML =
+              "Nie podano żadnych wartości";
+      return;
+    }
+
+    for (let i = 0; i < liczby.length; i++) {
+      if (liczby[i] === "" || isNaN(liczby[i]) ||
+              !Number.isInteger(Number(liczby[i]))) {
+        document.getElementById("result").innerHTML =
+                "Wszystkie wartości muszą być liczbami całkowitymi";
+        return;
+      }
+    }
+
+    let tablica = liczby.map(Number);
+
+    let n = tablica.length;
+
+    let max = tablica[0];
+    for (let x of tablica) {
+      if (x > max) max = x;
+    }
+
+    let indeksy = [];
+    for (let i = 0; i < tablica.length; i++) {
+      if (tablica[i] === max) {
+        indeksy.push(i);
+      }
+    }
+
+    let out = "<h3>Wynik:</h3>";
+    out += "<b>Wprowadzone liczby:</b> " + tekst + "<br><br>";
+
+    out += "<b>Tablica jednowymiarowa (" + n + " elementów):</b><br>";
+    for (let i = 0; i < tablica.length; i++) {
+      out += "tab[" + i + "] = " + tablica[i] + "<br>";
+    }
+
+    out += "<br><b>Liczba elementów:</b> " + n;
+    out += "<br><b>Maksymalna wartość:</b> " + max;
+    out += "<br><b>Indeksy elementów z maksymalną wartością:</b> ";
+    out += indeksy.join(", ");
+
+    document.getElementById("result").innerHTML = out;
+  };
+</script>
+
+</body>
+</html>

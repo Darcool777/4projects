@@ -2,19 +2,24 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Z96</title>
+  <title>Z95</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Zadanie 96</h2>
+<h2>Zadanie 95</h2>
 
-<p>Podaj liczbę wierszy i kolumn:</p>
+<p>Wymiary tablicy:</p>
+Liczba wierszy (n):
 <input id="rows" placeholder="n">
+<br><br>
+
+Liczba kolumn (m):
 <input id="cols" placeholder="m">
 <br><br>
 
-<textarea id="data" placeholder="Podaj liczby po przecinku" style="width:300px;height:100px"></textarea>
+<p>Wartości tablicy (liczby całkowite oddzielone przecinkami):</p>
+<textarea id="data" placeholder="np. 1, 2, 3, 4, 5, 6"></textarea>
 <br><br>
 
 <button id="btn">Sprawdź</button>
@@ -27,29 +32,31 @@
     let n = parseInt(document.getElementById("rows").value);
     let m = parseInt(document.getElementById("cols").value);
 
-    if (isNaN(n) || isNaN(m)) {
-      document.getElementById("result").innerHTML = "n i m muszą być liczbami całkowitymi";
+    if (isNaN(n) || isNaN(m) ||
+            !Number.isInteger(n) || !Number.isInteger(m) ||
+            n <= 0 || m <= 0) {
+      document.getElementById("result").innerHTML =
+              "n i m muszą być dodatnimi liczbami całkowitymi";
       return;
     }
-
-
     let tekst = document.getElementById("data").value;
     let liczby = tekst.split(",").map(x => x.trim());
 
+    if (liczby.length !== n * m) {
+      document.getElementById("result").innerHTML =
+              "Liczba elementów nie zgadza się z n × m";
+      return;
+    }
 
     for (let i = 0; i < liczby.length; i++) {
-      if (liczby[i] === "" || isNaN(liczby[i]) || !Number.isInteger(Number(liczby[i]))) {
-        document.getElementById("result").innerHTML = "Wszystkie elementy muszą być liczbami całkowitymi";
+      if (liczby[i] === "" || isNaN(liczby[i]) ||
+              !Number.isInteger(Number(liczby[i]))) {
+        document.getElementById("result").innerHTML =
+                "Wszystkie wartości muszą być liczbami całkowitymi";
         return;
       }
     }
-
-    liczby = liczby.map(Number);
-
-    if (liczby.length !== n * m) {
-      document.getElementById("result").innerHTML = "Podano złą liczbę elementów.";
-      return;
-    }
+    let dane = liczby.map(Number);
 
     let tablica = [];
     let index = 0;
@@ -57,38 +64,25 @@
     for (let i = 0; i < n; i++) {
       let wiersz = [];
       for (let j = 0; j < m; j++) {
-        wiersz.push(liczby[index]);
+        wiersz.push(dane[index]);
         index++;
       }
       tablica.push(wiersz);
     }
 
-    let maks = liczby[0];
-    for (let x of liczby) {
-      if (x > maks) maks = x;
+    let max = dane[0];
+    for (let x of dane) {
+      if (x > max) max = x;
     }
-
-    let pozycje = [];
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < m; j++) {
-        if (tablica[i][j] === maks) {
-          pozycje.push("(" + i + ", " + j + ")");
-        }
-      }
-    }
-
     let out = "<h3>Wynik:</h3>";
-    out += "<b>Tablica:</b><br>";
+    out += "<b>Tablica (" + n + " × " + m + "):</b><br>";
 
     for (let i = 0; i < n; i++) {
       out += tablica[i].join(" | ") + "<br>";
     }
-
-    out += "<br><b>Max:</b> " + maks;
-    out += "<br><b>Położenie:</b> " + pozycje.join(", ");
-
+    out += "<br><b>Maksymalna wartość:</b> " + max;
     document.getElementById("result").innerHTML = out;
-  }
+  };
 </script>
 
 </body>

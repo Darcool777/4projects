@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>T42b</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<br><br>
+
+<script>
+
+  let d = new Date();
+
+  let day = d.getDate();
+  let month = d.getMonth() + 1;
+  let year = d.getFullYear();
+
+  let hours = d.getHours();
+  let minutes = d.getMinutes();
+  let seconds = d.getSeconds();
+
+  if (day < 10) day = "0" + day;
+  if (month < 10) month = "0" + month;
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  if (seconds < 10) seconds = "0" + seconds;
+
+  document.write(
+          "Dzisiaj jest: " +
+          day + "." + month + "." + year + " " +
+          hours + ":" + minutes + ":" + seconds
+  );
+
+</script>
+
+</body>
+</html>
